@@ -20,3 +20,13 @@ pool.query(`
 `)
   .catch(console.err)
 
+pool.query(`
+ CREATE TABLE IF NOT EXISTS sellers
+  (
+    id SERIAL,
+    username VARCHAR(15),
+    email VARCHAR(25),
+    phone_number VARCHAR(15)
+  );
+`)
+  .catch(console.err)
