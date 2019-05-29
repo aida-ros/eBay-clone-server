@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize')
 const sequelize = require('../db')
+const Seller = require('../sellers/model')
 
 const Item = sequelize.define('items', {
   id: {
@@ -25,8 +26,16 @@ const Item = sequelize.define('items', {
   description: {
     type: Sequelize.TEXT,
     field: 'description'
+  },
+  sellerId: {
+    type: Sequelize.INTEGER,
+    field: 'seller_id'
   }
+}, {
+  tableName: 'items'
 })
+
+Item.belongsTo(Seller)
 
 Item.sync()
 
