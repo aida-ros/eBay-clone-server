@@ -1,9 +1,17 @@
 const express = require('express')
+const itemsRouter = require('./items/routes')
+const sellersRouter = require('./sellers/routes')
+
 const app = express()
 
-app.get('/houses', function (req, res, next) {
-  res.json({ message: 'Read all houses' })
-})
+const port = process.env.PORT || 4000
 
-const port = 4000
-app.listen(port, () => `Listening on port ${port}`)
+app
+  .use(itemsRouter)
+  .use(sellersRouter)
+
+app.listen(port, () => console.log(`Listening on port ${port}`))
+
+
+
+module.exports = app
